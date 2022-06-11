@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Param, Delete, Patch } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Param,
+  Delete,
+  Patch,
+  Query,
+} from '@nestjs/common';
 
 @Controller('movies')
 export class MoviesController {
@@ -6,7 +14,10 @@ export class MoviesController {
   getAll() {
     return 'This will return all movies';
   }
-
+  @Get('search')
+  search(@Query('year') searchingYear: string) {
+    return `We are searching for a movie made after: ${searchingYear}`;
+  }
   @Get('/:id')
   getOne(@Param('id') id: string) {
     return `This will return one movie with the id : ${id}`;
